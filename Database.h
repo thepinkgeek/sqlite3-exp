@@ -76,7 +76,5 @@ vector<DataObject> Database<DataObject> ::doQuery(char* queryString) {
 	return results;
 }
 
-template <class DataObject>
-int Database<DataObject> doInsert() {
-}
+
 #endif
