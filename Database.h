@@ -23,7 +23,8 @@ using namespace std;
 
 template <class DataObject>
 Database<DataObject> :: Database(char* databaseFileName) {
-	int result = sqlite3_open(databaseFileName, &(this -> dbConnection));
+	int result = sqlite3_open(databaseFileName, 
+			&(this -> dbConnection));
 	
 	cout << "Connection to " <<  databaseFileName;
 
@@ -44,25 +45,26 @@ Database<DataObject>:: ~Database() {
 using namespace std;
 template <class DataObject>
 vector<DataObject> Database<DataObject> ::doQuery(char* queryString) {
-	cout << "began.." << endl;
+	//cout << "began.." << endl;
 	vector<DataObject> results;
-	cout << "went here" << endl;
+	//cout << "went here" << endl;
 	sqlite3_stmt *statement;
-	cout << "querying..." << endl;
+	//cout << "querying..." << endl;
 
 	if (sqlite3_prepare_v2( this -> dbConnection, 
 				queryString,	
 				-1, &statement, 0)== SQLITE_OK) {
-		cout << "query successful" << endl;	
+		//cout << "query successful" << endl;	
 		int num_columns = sqlite3_column_count(statement); 
+	
 		while(true) {
-			cout << "true" << endl;
+			//cout << "true" << endl;
 			int result = sqlite3_step(statement);
 
 			if (result == SQLITE_ROW) {
 				char* columns[num_columns];
 				for(int i = 0; i < num_columns; i++) {
-					columns[i] = (char*)sqlite3_column_text(statement, i); 						
+					columns[i] = (char*)sqlite3_column_text(statement										, i); 						
 				}
 				DataObject newObject(columns, 3);
 				results.push_back(newObject);
