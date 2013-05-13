@@ -21,7 +21,6 @@ class Student {
 		int getId();
 		const char* getName();
 		const char* getCourse();
-		char* formulateInsertQuery();
 };
 
 Student :: Student(int id, char* name, char* course) {
@@ -65,9 +64,6 @@ const char* Student :: getCourse() {
 	return courseCopy.c_str();
 }
 
-char* formulateInsertQuery() {
-	string query = "insert into students(";
-	for()
-}
+
 
 #endif
