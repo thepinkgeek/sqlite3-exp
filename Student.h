@@ -3,6 +3,7 @@
 
 #include<string>
 #include<cstdlib>
+#include<map>
 
 using namespace std;
 
@@ -21,6 +22,7 @@ class Student {
 		int getId();
 		const char* getName();
 		const char* getCourse();
+		const char* generateInsertQuery();
 };
 
 Student :: Student(int id, char* name, char* course) {
@@ -64,6 +66,10 @@ const char* Student :: getCourse() {
 	return courseCopy.c_str();
 }
 
-
+const char* Student :: generateInsertQuery() {
+	string courseQuery = "insert into students ('name', 'course') values ";
+	courseQuery += "('" + string(this -> getName()) + "','" + string(this -> getCourse()) + "')";
+	return courseQuery.c_str();
+}
 
 #endif
